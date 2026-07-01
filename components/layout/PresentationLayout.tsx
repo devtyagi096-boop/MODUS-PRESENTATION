@@ -44,7 +44,7 @@ export function PresentationLayout({ scrollYProgress, loaded }: { scrollYProgres
           }
         });
       },
-      { threshold: 0.5 }
+      { rootMargin: "-40% 0px -40% 0px" }
     );
 
     const sections = document.querySelectorAll('section');
