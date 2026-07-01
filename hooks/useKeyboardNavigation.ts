@@ -24,8 +24,11 @@ export function useKeyboardNavigation() {
 
       let targetIndex = -1;
 
+      if (['ArrowDown', 'ArrowRight', ' ', 'ArrowUp', 'ArrowLeft'].includes(e.key)) {
+        e.preventDefault();
+      }
+
       if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === ' ') {
-        if (e.key === ' ') e.preventDefault();
         targetIndex = Math.min(currentIndex + 1, sections.length - 1);
       } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
         targetIndex = Math.max(currentIndex - 1, 0);

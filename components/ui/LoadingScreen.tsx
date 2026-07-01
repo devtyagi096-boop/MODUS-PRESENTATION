@@ -5,13 +5,24 @@ import { C } from '../../utils/theme';
 export function LoadingScreen({ onDone }: { onDone: () => void }) {
   const [progress, setProgress] = useState(0);
   useEffect(() => {
+    let animationFrameId: number;
+    let timeoutId: NodeJS.Timeout;
     const start = Date.now();
     const tick = () => {
       const p = Math.min((Date.now() - start) / 1800, 1);
       setProgress(p);
-      if (p < 1) requestAnimationFrame(tick); else setTimeout(onDone, 400);
+      if (p < 1) {
+        animationFrameId = requestAnimationFrame(tick);
+      } else {
+        timeoutId = setTimeout(onDone, 400);
+      }
     };
-    requestAnimationFrame(tick);
+    animationFrameId = requestAnimationFrame(tick);
+    
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+      clearTimeout(timeoutId);
+    };
   }, [onDone]);
 
   return (
