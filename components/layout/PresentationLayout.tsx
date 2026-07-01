@@ -8,9 +8,7 @@ import { FeaturesSection } from '../sections/FeaturesSection';
 import { ArchitectureSection } from '../sections/ArchitectureSection';
 import { WhyItMattersSection } from '../sections/WhyItMattersSection';
 import { ResultsSection } from '../sections/ResultsSection';
-import { HonestGapsSection } from '../sections/HonestGapsSection';
 import { RoadmapSection } from '../sections/RoadmapSection';
-import { SystemsSection } from '../sections/SystemsSection';
 import { ReferencesSection } from '../sections/ReferencesSection';
 import { CollaborationSection } from '../sections/CollaborationSection';
 import { ThankYouSection } from '../sections/ThankYouSection';
@@ -64,7 +62,7 @@ export function PresentationLayout({ scrollYProgress, loaded }: { scrollYProgres
 
   const sectionsList = [
     "Hero", "Problem", "Vision", "About", "Features", "Architecture", 
-    "Why It Matters", "Results", "Honest Gaps", "Roadmap", "Systems", "References", "Collaboration", "Thank You"
+    "Why It Matters", "Results", "Roadmap", "References", "Collaboration", "Thank You"
   ];
 
   return (
@@ -91,9 +89,7 @@ export function PresentationLayout({ scrollYProgress, loaded }: { scrollYProgres
         <ArchitectureSection loaded={loaded} mx={mx} my={my} heroOp={heroOp} heroY={heroY} />
         <WhyItMattersSection loaded={loaded} mx={mx} my={my} heroOp={heroOp} heroY={heroY} />
         <ResultsSection loaded={loaded} mx={mx} my={my} heroOp={heroOp} heroY={heroY} />
-        <HonestGapsSection loaded={loaded} mx={mx} my={my} heroOp={heroOp} heroY={heroY} />
         <RoadmapSection loaded={loaded} mx={mx} my={my} heroOp={heroOp} heroY={heroY} />
-        <SystemsSection loaded={loaded} mx={mx} my={my} heroOp={heroOp} heroY={heroY} />
         <ReferencesSection />
         <CollaborationSection loaded={loaded} mx={mx} my={my} heroOp={heroOp} heroY={heroY} />
         <ThankYouSection loaded={loaded} mx={mx} my={my} heroOp={heroOp} heroY={heroY} />

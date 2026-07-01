@@ -99,7 +99,7 @@ const AnimatedGraph = () => {
 
           {/* Modus_X Line */}
           <motion.path
-            d="M 50 210 L 470 210"
+            d="M 50 210 L 470 210.01"
             fill="none"
             stroke="#E4E4E7"
             strokeWidth="3.5"
@@ -110,10 +110,14 @@ const AnimatedGraph = () => {
             transition={{ duration: 1.8, ease: "easeOut", delay: 0.6 }}
           />
           <motion.circle 
-            cx="470" cy="210" r="4.5" fill="#E4E4E7"
-            initial={{ scale: 0, opacity: 0 }}
-            animate={isInView ? { scale: 1, opacity: 1 } : {}}
-            transition={{ delay: 2.4, type: "spring" }}
+            cy="210" r="4.5" fill="#E4E4E7"
+            initial={{ cx: 50, scale: 0, opacity: 0 }}
+            animate={isInView ? { cx: 470, scale: 1, opacity: 1 } : {}}
+            transition={{
+              cx: { duration: 1.8, ease: "easeOut", delay: 0.6 },
+              scale: { delay: 0.6, duration: 0.2 },
+              opacity: { delay: 0.6, duration: 0.2 }
+            }}
           />
         </svg>
       </div>
@@ -128,9 +132,9 @@ export function ProblemSection({ loaded, mx, my, heroOp, heroY }: { loaded: bool
         <div className="max-w-3xl">
           <Rv>
             <h2 className="font-bold mb-8" style={{fontFamily:"'Space Grotesk'",fontSize:'clamp(2rem,4vw,3.2rem)',lineHeight:1.2,letterSpacing:'normal',wordSpacing:'normal'}}>
-              <WordReveal text="AI is powerful." style={{color:C.w}} />
+              <WordReveal text="Attention is powerful." style={{color:C.w}} />
               <br />
-              <WordReveal text="Understanding it isn't." delay={.5} style={{color:C.t2}} />
+              <WordReveal text="But its memory doesn't scale." delay={.5} style={{color:C.t2}} />
             </h2>
           </Rv>
           <Rv d={.8}>

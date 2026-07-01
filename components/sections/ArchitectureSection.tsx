@@ -41,116 +41,8 @@ export function ArchitectureSection({ loaded, mx, my, heroOp, heroY }: { loaded:
                 <p className="text-xs mt-2" style={{ fontFamily: "'JetBrains Mono'", color: C.t3 }}>k, v, q, gates, η, retain</p>
               </TiltCard>
 
-              {/* connector down to fork */}
-              <motion.div className="w-px" style={{ background: `linear-gradient(180deg, ${C.blue}30, ${C.blue}15)` }} initial={{ height: 0 }} whileInView={{ height: 56 }} viewport={{ once: true }} transition={{ duration: .6, delay: .5 }} />
-
-              {/* ── FORK LABEL ── */}
-              <p className="text-[10px] font-medium mb-4" style={{ fontFamily: "'JetBrains Mono'", letterSpacing: 4, color: C.t3, textTransform: 'uppercase' }}>parallel streams</p>
-
-              {/* ── HORIZONTAL FORK LINE ── */}
-              <div className="relative flex items-start justify-center" style={{ width: '100%', maxWidth: 560 }}>
-                {/* horizontal bar connecting the two branches */}
-                <motion.div className="absolute top-0 h-px" style={{ left: '25%', right: '25%', background: `linear-gradient(90deg, ${C.blue}30, ${C.t3}20, ${C.purple}30)` }} initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: .8, delay: .6 }} />
-                {/* center tick mark */}
-                <motion.div className="absolute top-0 w-px" style={{ left: '50%', background: C.t3+'30' }} initial={{ height: 0 }} whileInView={{ height: 12 }} viewport={{ once: true }} transition={{ delay: .6 }} />
-
-                {/* ── MATRIX STREAM (Left) ── */}
-                <div className="flex flex-col items-center flex-1">
-                  <motion.div className="w-px" style={{ background: `${C.blue}30` }} initial={{ height: 0 }} whileInView={{ height: 48 }} viewport={{ once: true }} transition={{ delay: .7 }} />
-                  <div style={{ width: 0, height: 0, borderLeft: '4px solid transparent', borderRight: '4px solid transparent', borderTop: `6px solid ${C.blue}40` }} />
-                  <div className="mt-3" />
-                  <div 
-                    onMouseEnter={() => setHoveredNode('matrix')} 
-                    onMouseLeave={() => setHoveredNode(null)}
-                    className="relative cursor-help flex flex-col items-center"
-                  >
-                    <TiltCard accent={C.blue} className="p-6 md:p-8 text-center w-48 md:w-56">
-                      <Database size={36} style={{ color: C.blue }} className="mx-auto mb-3" strokeWidth={1.2} />
-                      <p className="text-2xl font-bold mb-1" style={{ fontFamily: "'Space Grotesk'", color: C.blue }}>H</p>
-                      <p className="text-sm font-medium mb-2" style={{ fontFamily: "'Space Grotesk'", color: C.w }}>Matrix Stream</p>
-                      <p className="text-[11px]" style={{ fontFamily: "'JetBrains Mono'", color: C.t3 }}>384 × 384 associative memory</p>
-                      <p className="text-[10px] mt-2" style={{ color: C.t3 }}>Long-range recall via delta rule</p>
-                    </TiltCard>
-                    <AnimatePresence>
-                      {hoveredNode === 'matrix' && (
-                        <motion.div
-                          initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                          animate={{ opacity: 1, y: 0, scale: 1 }}
-                          exit={{ opacity: 0, y: 5, scale: 0.95 }}
-                          className="absolute z-50 p-4 rounded-xl border whitespace-nowrap backdrop-blur-md left-1/2 -translate-x-1/2 top-full mt-4"
-                          style={{
-                            background: `${C.bg}e6`,
-                            borderColor: `${C.blue}40`,
-                            boxShadow: `0 8px 32px -8px ${C.blue}30`
-                          }}
-                        >
-                          <p className="text-xs mb-1 font-medium" style={{ color: C.w }}>Update Rule:</p>
-                          <div className="text-sm" style={{ color: C.blue }}>
-                            <InlineMath math="H_t = H_{t-1} + (v_t - H_{t-1}k_t) \otimes k_t" />
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                  {/* down connector */}
-                  <motion.div className="w-px" style={{ background: `${C.blue}25` }} initial={{ height: 0 }} whileInView={{ height: 48 }} viewport={{ once: true }} transition={{ delay: 1 }} />
-                  <div style={{ width: 0, height: 0, borderLeft: '4px solid transparent', borderRight: '4px solid transparent', borderTop: `6px solid ${C.blue}30` }} />
-                </div>
-
-                {/* ── VECTOR STREAM (Right) ── */}
-                <div className="flex flex-col items-center flex-1">
-                  <motion.div className="w-px" style={{ background: `${C.purple}30` }} initial={{ height: 0 }} whileInView={{ height: 48 }} viewport={{ once: true }} transition={{ delay: .7 }} />
-                  <div style={{ width: 0, height: 0, borderLeft: '4px solid transparent', borderRight: '4px solid transparent', borderTop: `6px solid ${C.purple}40` }} />
-                  <div className="mt-3" />
-                  <div 
-                    onMouseEnter={() => setHoveredNode('vector')} 
-                    onMouseLeave={() => setHoveredNode(null)}
-                    className="relative cursor-help flex flex-col items-center"
-                  >
-                    <TiltCard accent={C.purple} className="p-6 md:p-8 text-center w-48 md:w-56">
-                      <Activity size={36} style={{ color: C.purple }} className="mx-auto mb-3" strokeWidth={1.2} />
-                      <p className="text-2xl font-bold mb-1" style={{ fontFamily: "'Space Grotesk'", color: C.purple }}>s</p>
-                      <p className="text-sm font-medium mb-2" style={{ fontFamily: "'Space Grotesk'", color: C.w }}>Vector Stream</p>
-                      <p className="text-[11px]" style={{ fontFamily: "'JetBrains Mono'", color: C.t3 }}>384-element recurrent state</p>
-                      <p className="text-[10px] mt-2" style={{ color: C.t3 }}>Fast local pattern tracking</p>
-                    </TiltCard>
-                    <AnimatePresence>
-                      {hoveredNode === 'vector' && (
-                        <motion.div
-                          initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                          animate={{ opacity: 1, y: 0, scale: 1 }}
-                          exit={{ opacity: 0, y: 5, scale: 0.95 }}
-                          className="absolute z-50 p-4 rounded-xl border whitespace-nowrap backdrop-blur-md left-1/2 -translate-x-1/2 top-full mt-4"
-                          style={{
-                            background: `${C.bg}e6`,
-                            borderColor: `${C.purple}40`,
-                            boxShadow: `0 8px 32px -8px ${C.purple}30`
-                          }}
-                        >
-                          <p className="text-xs mb-1 font-medium" style={{ color: C.w }}>Update Rule:</p>
-                          <div className="text-sm" style={{ color: C.purple }}>
-                            <InlineMath math="s_t = \gamma_t \odot s_{t-1} + (1 - \gamma_t) \odot x_t" />
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                  {/* down connector */}
-                  <motion.div className="w-px" style={{ background: `${C.purple}25` }} initial={{ height: 0 }} whileInView={{ height: 48 }} viewport={{ once: true }} transition={{ delay: 1 }} />
-                  <div style={{ width: 0, height: 0, borderLeft: '4px solid transparent', borderRight: '4px solid transparent', borderTop: `6px solid ${C.purple}30` }} />
-                </div>
-              </div>
-
-              {/* ── MERGE HORIZONTAL LINE ── */}
-              <div className="relative w-full" style={{ maxWidth: 560 }}>
-                <motion.div className="absolute top-0 h-px" style={{ left: '25%', right: '25%', background: `linear-gradient(90deg, ${C.blue}30, ${C.cyan}25, ${C.purple}30)` }} initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: .8, delay: 1.1 }} />
-              </div>
-
-              {/* ── MERGE LABEL ── */}
-              <p className="text-[10px] font-medium mt-6 mb-3" style={{ fontFamily: "'JetBrains Mono'", letterSpacing: 4, color: C.cyan, textTransform: 'uppercase' }}>merge</p>
-
-              {/* connector down */}
-              <motion.div className="w-px" style={{ background: `linear-gradient(180deg, ${C.cyan}30, ${C.cyan}15)` }} initial={{ height: 0 }} whileInView={{ height: 40 }} viewport={{ once: true }} transition={{ delay: 1.2 }} />
+              {/* connector down to router */}
+              <motion.div className="w-px" style={{ background: `linear-gradient(180deg, ${C.blue}30, ${C.cyan}15)` }} initial={{ height: 0 }} whileInView={{ height: 56 }} viewport={{ once: true }} transition={{ duration: .6, delay: .5 }} />
               <div style={{ width: 0, height: 0, borderLeft: '5px solid transparent', borderRight: '5px solid transparent', borderTop: `8px solid ${C.cyan}50` }} />
 
               {/* ── ROUTER ── */}
@@ -189,8 +81,116 @@ export function ArchitectureSection({ loaded, mx, my, heroOp, heroY }: { loaded:
                 </AnimatePresence>
               </div>
 
-              {/* connector down */}
-              <motion.div className="w-px" style={{ background: `linear-gradient(180deg, ${C.cyan}20, rgba(255,255,255,.04))` }} initial={{ height: 0 }} whileInView={{ height: 56 }} viewport={{ once: true }} transition={{ delay: 1.4 }} />
+              {/* connector down to fork */}
+              <motion.div className="w-px" style={{ background: `linear-gradient(180deg, ${C.cyan}30, ${C.t3}15)` }} initial={{ height: 0 }} whileInView={{ height: 56 }} viewport={{ once: true }} transition={{ duration: .6, delay: .7 }} />
+
+              {/* ── FORK LABEL ── */}
+              <p className="text-[10px] font-medium mb-4" style={{ fontFamily: "'JetBrains Mono'", letterSpacing: 4, color: C.t3, textTransform: 'uppercase' }}>parallel streams</p>
+
+              {/* ── HORIZONTAL FORK LINE ── */}
+              <div className="relative flex items-start justify-center" style={{ width: '100%', maxWidth: 560 }}>
+                {/* horizontal bar connecting the two branches */}
+                <motion.div className="absolute top-0 h-px" style={{ left: '25%', right: '25%', background: `linear-gradient(90deg, ${C.blue}30, ${C.t3}20, ${C.purple}30)` }} initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: .8, delay: .8 }} />
+                {/* center tick mark */}
+                <motion.div className="absolute top-0 w-px" style={{ left: '50%', background: C.t3+'30' }} initial={{ height: 0 }} whileInView={{ height: 12 }} viewport={{ once: true }} transition={{ delay: .8 }} />
+
+                {/* ── MATRIX STREAM (Left) ── */}
+                <div className="flex flex-col items-center flex-1">
+                  <motion.div className="w-px" style={{ background: `${C.blue}30` }} initial={{ height: 0 }} whileInView={{ height: 48 }} viewport={{ once: true }} transition={{ delay: .9 }} />
+                  <div style={{ width: 0, height: 0, borderLeft: '4px solid transparent', borderRight: '4px solid transparent', borderTop: `6px solid ${C.blue}40` }} />
+                  <div className="mt-3" />
+                  <div 
+                    onMouseEnter={() => setHoveredNode('matrix')} 
+                    onMouseLeave={() => setHoveredNode(null)}
+                    className="relative cursor-help flex flex-col items-center"
+                  >
+                    <TiltCard accent={C.blue} className="p-6 md:p-8 text-center w-48 md:w-56">
+                      <Database size={36} style={{ color: C.blue }} className="mx-auto mb-3" strokeWidth={1.2} />
+                      <p className="text-2xl font-bold mb-1" style={{ fontFamily: "'Space Grotesk'", color: C.blue }}>H</p>
+                      <p className="text-sm font-medium mb-2" style={{ fontFamily: "'Space Grotesk'", color: C.w }}>Matrix Stream</p>
+                      <p className="text-[11px]" style={{ fontFamily: "'JetBrains Mono'", color: C.t3 }}><InlineMath math="d \times d" /> associative memory</p>
+                      <p className="text-[10px] mt-2" style={{ color: C.t3 }}>Long-range recall via delta rule</p>
+                    </TiltCard>
+                    <AnimatePresence>
+                      {hoveredNode === 'matrix' && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: 5, scale: 0.95 }}
+                          className="absolute z-50 p-4 rounded-xl border whitespace-nowrap backdrop-blur-md left-1/2 -translate-x-1/2 top-full mt-4"
+                          style={{
+                            background: `${C.bg}e6`,
+                            borderColor: `${C.blue}40`,
+                            boxShadow: `0 8px 32px -8px ${C.blue}30`
+                          }}
+                        >
+                          <p className="text-xs mb-1 font-medium" style={{ color: C.w }}>Update Rule:</p>
+                          <div className="text-sm" style={{ color: C.blue }}>
+                            <InlineMath math="H_t = H_{t-1} + (v_t - H_{t-1}k_t) \otimes k_t" />
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                  {/* down connector */}
+                  <motion.div className="w-px" style={{ background: `${C.blue}25` }} initial={{ height: 0 }} whileInView={{ height: 48 }} viewport={{ once: true }} transition={{ delay: 1.2 }} />
+                  <div style={{ width: 0, height: 0, borderLeft: '4px solid transparent', borderRight: '4px solid transparent', borderTop: `6px solid ${C.blue}30` }} />
+                </div>
+
+                {/* ── VECTOR STREAM (Right) ── */}
+                <div className="flex flex-col items-center flex-1">
+                  <motion.div className="w-px" style={{ background: `${C.purple}30` }} initial={{ height: 0 }} whileInView={{ height: 48 }} viewport={{ once: true }} transition={{ delay: .9 }} />
+                  <div style={{ width: 0, height: 0, borderLeft: '4px solid transparent', borderRight: '4px solid transparent', borderTop: `6px solid ${C.purple}40` }} />
+                  <div className="mt-3" />
+                  <div 
+                    onMouseEnter={() => setHoveredNode('vector')} 
+                    onMouseLeave={() => setHoveredNode(null)}
+                    className="relative cursor-help flex flex-col items-center"
+                  >
+                    <TiltCard accent={C.purple} className="p-6 md:p-8 text-center w-48 md:w-56">
+                      <Activity size={36} style={{ color: C.purple }} className="mx-auto mb-3" strokeWidth={1.2} />
+                      <p className="text-2xl font-bold mb-1" style={{ fontFamily: "'Space Grotesk'", color: C.purple }}>s</p>
+                      <p className="text-sm font-medium mb-2" style={{ fontFamily: "'Space Grotesk'", color: C.w }}>Vector Stream</p>
+                      <p className="text-[11px]" style={{ fontFamily: "'JetBrains Mono'", color: C.t3 }}><InlineMath math="d" />-element recurrent state</p>
+                      <p className="text-[10px] mt-2" style={{ color: C.t3 }}>Fast local pattern tracking</p>
+                    </TiltCard>
+                    <AnimatePresence>
+                      {hoveredNode === 'vector' && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: 5, scale: 0.95 }}
+                          className="absolute z-50 p-4 rounded-xl border whitespace-nowrap backdrop-blur-md left-1/2 -translate-x-1/2 top-full mt-4"
+                          style={{
+                            background: `${C.bg}e6`,
+                            borderColor: `${C.purple}40`,
+                            boxShadow: `0 8px 32px -8px ${C.purple}30`
+                          }}
+                        >
+                          <p className="text-xs mb-1 font-medium" style={{ color: C.w }}>Update Rule:</p>
+                          <div className="text-sm" style={{ color: C.purple }}>
+                            <InlineMath math="s_t = \gamma_t \odot s_{t-1} + (1 - \gamma_t) \odot x_t" />
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                  {/* down connector */}
+                  <motion.div className="w-px" style={{ background: `${C.purple}25` }} initial={{ height: 0 }} whileInView={{ height: 48 }} viewport={{ once: true }} transition={{ delay: 1.2 }} />
+                  <div style={{ width: 0, height: 0, borderLeft: '4px solid transparent', borderRight: '4px solid transparent', borderTop: `6px solid ${C.purple}30` }} />
+                </div>
+              </div>
+
+              {/* ── MERGE HORIZONTAL LINE ── */}
+              <div className="relative w-full" style={{ maxWidth: 560 }}>
+                <motion.div className="absolute top-0 h-px" style={{ left: '25%', right: '25%', background: `linear-gradient(90deg, ${C.blue}30, rgba(255,255,255,.04), ${C.purple}30)` }} initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: .8, delay: 1.3 }} />
+              </div>
+
+              {/* ── MERGE LABEL ── */}
+              <p className="text-[10px] font-medium mt-6 mb-3" style={{ fontFamily: "'JetBrains Mono'", letterSpacing: 4, color: C.t3, textTransform: 'uppercase' }}>merge</p>
+
+              {/* connector down to output */}
+              <motion.div className="w-px" style={{ background: `linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.04))` }} initial={{ height: 0 }} whileInView={{ height: 56 }} viewport={{ once: true }} transition={{ delay: 1.5 }} />
               <div style={{ width: 0, height: 0, borderLeft: '5px solid transparent', borderRight: '5px solid transparent', borderTop: `8px solid rgba(255,255,255,.12)` }} />
 
               {/* ── OUTPUT ── */}

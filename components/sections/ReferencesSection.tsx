@@ -25,6 +25,13 @@ const references = [
     link: "https://idsia.ch/~juergen/fastweight.html"
   },
   {
+    authors: "Schlag, I., Irie, K., & Schmidhuber, J.",
+    year: "2021",
+    title: "Linear Transformers Are Secretly Fast Weight Programmers",
+    venue: "ICML 2021",
+    link: "https://arxiv.org/abs/2102.11174"
+  },
+  {
     authors: "Katharopoulos, A. et al.",
     year: "2020",
     title: "Transformers are RNNs: Fast Autoregressive Transformers with Linear Attention",
