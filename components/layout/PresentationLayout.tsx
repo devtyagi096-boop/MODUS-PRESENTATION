@@ -81,6 +81,9 @@ export function PresentationLayout({ scrollYProgress, loaded }: { scrollYProgres
             />
           ))}
         </div>
+        <div className="fixed bottom-6 right-6 z-50 text-zinc-400 font-mono text-sm pointer-events-none bg-zinc-900/50 px-3 py-1 rounded-full backdrop-blur-sm border border-zinc-800">
+          {activeIndex + 1} / {sectionsList.length}
+        </div>
         <HeroSection loaded={loaded} mx={mx} my={my} heroOp={heroOp} heroY={heroY} />
         <ProblemSection loaded={loaded} mx={mx} my={my} heroOp={heroOp} heroY={heroY} />
         <VisionSection loaded={loaded} mx={mx} my={my} heroOp={heroOp} heroY={heroY} />
