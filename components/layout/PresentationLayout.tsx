@@ -61,7 +61,7 @@ export function PresentationLayout({ scrollYProgress, loaded }: { scrollYProgres
   };
 
   const sectionsList = [
-    "Hero", "Problem", "Vision", "About", "Features", "Architecture", 
+    "Hero", "Problem", "Vision", "About", "Feature: Matrix", "Feature: Vector", "Feature: Router", "Architecture", 
     "Why It Matters", "Results", "Roadmap", "References", "Collaboration", "Thank You"
   ];
 
