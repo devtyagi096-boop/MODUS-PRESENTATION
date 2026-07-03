@@ -10,12 +10,12 @@ export function WordReveal({ text, className='', style={}, delay=0 }: {text:stri
       {words.map((w, i) => (
         <motion.span
           key={i}
-          style={{ display: 'inline-block', marginRight: 16 }}
+          style={{ display: 'inline-block' }}
           initial={{ opacity: 0, y: 20, filter: 'blur(8px)' }}
           animate={inView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
           transition={{ duration: .6, delay: delay + i * .07, ease: [.22,1,.36,1] }}
         >
-          {w}
+          {w}{i < words.length - 1 ? '\u00A0' : ''}
         </motion.span>
       ))}
     </span>
